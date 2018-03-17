@@ -14,7 +14,11 @@ server.post('/', function (req, res) {
           if (requestBody.result) {
             if (requestBody.result.action == 'photo_auth') {
               console.log("inside photo_auth intent");
-              res.speech("Your body is:",JSON.stringify(requestBody));
+              var speech = "Your body is:"+JSON.stringify(requestBody)
+              return res.json({
+                  speech: speech,
+                  displayText: speech,
+                });
             }
           }
       }
