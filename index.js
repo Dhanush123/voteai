@@ -43,20 +43,28 @@ function auth(body,clbk) {
 }
 
 function voiceAuth(audioUrl,clbk) {
-  myVoiceIt.authenticationByWavURL({
-      userId: 'dhanushp',
-      password: 'db135c5b81e061bd4a7bb7b360ee34e778894979440ecace0eb8d12cfe9061cd',
-      urlToAuthenticationWav: audioUrl,
-      contentLanguage: 'en-US',
-      callback: function(response){
-        var authStatus = response["Result"].includes("successful");
-        console.log("voice auth status:",response["Result"]);
-        var speech = authStatus ? "Voice authentication has found eligible voter Dhanush Patel." : "Unauthorized access attempt. This incident has been reported!"; 
-        return clbk.json({
-          speech: speech,
-          displayText: speech,
-        });
-      }
+  var options = { method: 'POST',
+  url: 'https://siv.voiceprintportal.com/sivservice/api/authentications/bywavurl',
+  headers: 
+   { 'postman-token': '59c61c23-b1eb-27d1-5358-d197b33940a8',
+     'cache-control': 'no-cache',
+     contentlanguage: 'en-US',
+     vsitwavurl: audioUrl,
+     vsitpassword: 'db135c5b81e061bd4a7bb7b360ee34e778894979440ecace0eb8d12cfe9061cd',
+     userid: 'dhanushp',
+     vsitdeveloperid: 'c2e297ef8a444fcab3026f0838856a53',
+     'content-type': 'audio/wav' } };
+
+  request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+
+    var authStatus = body["Result"].includes("successful");
+    console.log("voice auth status:",body["Result"]);
+    var speech = authStatus ? "Voice authentication has found eligible voter Dhanush Patel." : "Unauthorized access attempt. This incident has been reported!"; 
+    return clbk.json({
+      speech: speech,
+      displayText: speech,
+    });
   });  
 }
 
