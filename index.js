@@ -37,7 +37,7 @@ server.post('/', function (req, res) {
 
 function photoAuth(body,clbk) {
     var imageUrl = body["originalRequest"]["data"]["message"]["attachments"][0]["payload"]["url"];
-    console.log("url:",url);
+    console.log("url:",imageUrl);
     var options = { method: 'POST',
     url: 'https://api.clarifai.com/v2/models/SFHacks2018/outputs',
     headers: 
