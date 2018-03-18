@@ -31,6 +31,7 @@ server.post('/', function (req, res) {
 });
 
 function auth(body,clbk) {
+  console.log("even in auth???");
   var url = body["originalRequest"]["data"]["message"]["attachments"][0]["payload"]["url"];
   console.log("url:",url);
   if (url.toString().includes(".jpg")) {
