@@ -51,7 +51,7 @@ function photoAuth(body,clbk) {
     //--------------------------------
     var confidence = body["outputs"][0]["data"]["concepts"][0]["value"];
     console.log("photo match confidence:",confidence);
-    var speech = confidence > 0.5 ? "Welcome to your voting portal Dhanush Patel." : "Unauthorized access attempt. This incident has been reported!"; 
+    var speech = confidence > 0.9 ? "Welcome to your voting portal Dhanush Patel." : "Unauthorized access attempt. This incident has been reported!"; 
     return clbk.json({
         speech: speech,
         displayText: speech,
