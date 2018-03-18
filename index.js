@@ -2,7 +2,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
-const myVoiceIt = require('VoiceIt');
 
 const server = express();
 server.use(bodyParser.json());
@@ -90,6 +89,5 @@ function photoAuth(photoUrl,clbk) {
 }
 
 server.listen((process.env.PORT || 8000), function () {
-  myVoiceIt.initialize('c2e297ef8a444fcab3026f0838856a53');
   console.log('Server listening');
 });
