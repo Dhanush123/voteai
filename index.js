@@ -34,12 +34,12 @@ server.post('/', function (req, res) {
 function auth(body,clbk) {
   var url = body["originalRequest"]["data"]["message"]["attachments"][0]["payload"]["url"];
   console.log("url:",url);
-//  if (url.includes(".jpg")) {
-//    photoAuth(url, clbk);
-//  }
-//  else if (url.includes(".mp4")) {
-//    voiceAuth(url, clbk);
-//  }
+  if (url.includes(".jpg")) {
+    photoAuth(url, clbk);
+  }
+  else if (url.includes(".mp4")) {
+    voiceAuth(url, clbk);
+  }
 }
 
 function voiceAuth(audioUrl,clbk) {
